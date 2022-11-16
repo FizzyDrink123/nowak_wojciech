@@ -34,8 +34,8 @@ Route::middleware([
          ->name('admin');
 
     Route::get('/worker',function(){
-        Log::error('Error log');
-        Log::debug('Debug log');
+        // Log::error('Error log');
+        // Log::debug('Debug log');
         dd('To może zobaczyć ' . config('auth.roles.worker'));
     })->middleware('role:' . config('auth.roles.worker'))
          ->name('worker');     
