@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,20 +29,12 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 
-    Route::get('/admin',function(){
-        dd('To może zobaczyć ' . config('auth.roles.admin'));
-    })->middleware('role:' . config('auth.roles.admin'))
-         ->name('admin');
-        Log::error('Error log');
-        Log::debug('Debug log');
-    Route::get('/worker',function(){
-        dd('To może zobaczyć ' . config('auth.roles.worker'));
-    })->middleware('role:' . config('auth.roles.worker'))
-         ->name('worker');     
+    Route::name('users.')->prefix('users')->group(function(){
+        Route::get('',[UserController::class,'index'])
+        ->name('index')
+        ->middleware(['permission:users.index']);
+    });
 
-    Route::get('/user',function(){
-        dd('To może zobaczyć ' . config('auth.roles.user'));
-    })->middleware('role:' . config('auth.roles.user'))
-        ->name('user');  
+    
 });
 

@@ -20,6 +20,11 @@
                         {{ __('translation.navigation.log-viewer') }}
                     </x-jet-nav-link>
                     @endcan
+                    @can('users.index')
+                    <x-jet-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('users.index')">
+                        {{ __('translation.navigation.users') }}
+                    </x-jet-nav-link>
+                    @endcan
                 </div>
             </div>
 

@@ -1,6 +1,11 @@
 <?php
 
 return[
+    'attributes'=>[
+        'created_at'=>'Utworzono',
+        'updated_at'=>'Zaktualizowano',
+        'deleted_at'=>'Usunięto',
+    ],
     'account'=>[
         'manage_account'=>'Zarządzanie profilem',
         'profile'=>'Profil',
@@ -36,5 +41,6 @@ return[
         'navigation'=>[
             'dashboard'=>'Dashboard',
             'log-viewer'=>'Logi',
+            'users'=>'Użytkownicy',
         ],
     ];
