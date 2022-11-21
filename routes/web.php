@@ -32,10 +32,9 @@ Route::middleware([
         dd('To może zobaczyć ' . config('auth.roles.admin'));
     })->middleware('role:' . config('auth.roles.admin'))
          ->name('admin');
-
+        Log::error('Error log');
+        Log::debug('Debug log');
     Route::get('/worker',function(){
-        // Log::error('Error log');
-        // Log::debug('Debug log');
         dd('To może zobaczyć ' . config('auth.roles.worker'));
     })->middleware('role:' . config('auth.roles.worker'))
          ->name('worker');     
@@ -45,3 +44,4 @@ Route::middleware([
     })->middleware('role:' . config('auth.roles.user'))
         ->name('user');  
 });
+

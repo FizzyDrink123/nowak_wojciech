@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Facade;
+use Arcanedev\LogViewer\LogViewerServiceProvider;
 
 return [
 
@@ -198,6 +199,8 @@ return [
         App\Providers\JetstreamServiceProvider::class,
 
         Spatie\Permission\PermissionServiceProvider::class,
+
+        Arcanedev\LogViewer\LogViewerServiceProvider::class  
     ],
 
     /*
@@ -215,4 +218,6 @@ return [
         // 'ExampleClass' => App\Example\ExampleClass::class,
     ])->toArray(),
 
+
+    
 ];
