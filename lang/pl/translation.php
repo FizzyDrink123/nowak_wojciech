@@ -6,6 +6,8 @@ return[
         'updated_at'=>'Zaktualizowano',
         'deleted_at'=>'Usunięto',
     ],
+    'yes'=>'Tak',
+    'no'=>'Nie',
     'account'=>[
         'manage_account'=>'Zarządzanie profilem',
         'profile'=>'Profil',
@@ -42,5 +44,6 @@ return[
             'dashboard'=>'Dashboard',
             'log-viewer'=>'Logi',
             'users'=>'Użytkownicy',
+            'categories'=>'Kategorie',
         ],
     ];

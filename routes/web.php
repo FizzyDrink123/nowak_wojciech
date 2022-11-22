@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +36,6 @@ Route::middleware([
         ->middleware(['permission:users.index']);
     });
 
-    
+    Route::resource('categories',CategoryController::class);
 });
 

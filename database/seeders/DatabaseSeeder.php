@@ -6,6 +6,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Database\Seeders\RoleSeeder;
 use Database\Seeders\UserSeeder;
+use Database\Seeders\CategorySeeder;
 use Illuminate\Support\Facades\Hash;
 use Database\Seeders\PermissionSeeder;
 
@@ -28,5 +29,6 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'user.test@localhost',
         //     'password' => Hash::make('12345678'),
         // ]);
+        $this->call(CategorySeeder::class);
     }
 }
