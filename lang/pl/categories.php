@@ -4,8 +4,17 @@ return[
     'attributes'=>[
         'name'=>'Nazwa',
     ],
-    'actions'=>[],
+    'actions'=>[
+        'create'=>'Dodaj kategorię',
+    ],
+    'labels'=>[
+        'create_form_title'=>'Tworzenie nowej kategorii',
+        'edit_form_title'=>'Edycja kategorii',
+    ],
     'messages'=>[
-        'successes'=>[],
+        'successes'=>[
+            'stored'=>'Dodano kategorię :name',
+            'udpated'=>'Zaktualizowano kategorię :name',
+        ],
     ],
 ];

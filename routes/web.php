@@ -36,6 +36,8 @@ Route::middleware([
         ->middleware(['permission:users.index']);
     });
 
-    Route::resource('categories',CategoryController::class);
+    Route::resource('categories',CategoryController::class)->only([
+        'index', 'create', 'edit'
+    ]);
 });
 

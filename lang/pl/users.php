@@ -14,4 +14,12 @@ return[
         'remove_admin_role'=>'Odbierz uprawnienia administratora',
         'remove_worker_role'=>'Odbierz uprawnienia pracownika',
     ],
+    'messages'=>[
+        'successes'=>[
+            'admin_role_assigned'=>'Ustawiono rolę admina dla :user',
+            'admin_role_removed'=>'Odebrano rolę admina :user',
+            'worker_role_assigned'=>'Ustawiono rolę pracownika dla :user',
+            'worker_role_removed'=>'Odebrano rolę pracownika :user',
+        ]
+    ]
 ];

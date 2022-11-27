@@ -6,8 +6,23 @@ return[
         'updated_at'=>'Zaktualizowano',
         'deleted_at'=>'Usunięto',
     ],
+    'messages'=>[
+      'successes'=>[
+        'stored_title'=>'Utworzony',
+        'update_title'=>'Zaktualizowano',
+      ]  
+    ],
+    'actions'=>[
+        'edit'=>'Edytuj',
+    ],
     'yes'=>'Tak',
     'no'=>'Nie',
+    'cancel'=>'Anuluj',
+    'store'=>'Utwórz',
+    'update'=>'Aktualizuj',
+    'save'=>'Zapisz',
+    'back'=>'Wstecz',
+    'enter'=>'Wprowadż wartość',
     'account'=>[
         'manage_account'=>'Zarządzanie profilem',
         'profile'=>'Profil',

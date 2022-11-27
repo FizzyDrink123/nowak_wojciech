@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Users;
 
 use App\Models\User;
+use WireUi\Traits\Actions;
 use LaravelViews\Facades\Header;
 use LaravelViews\Views\TableView;
 use App\Http\Livewire\Users\Filters\UsersRoleFilter;
@@ -14,6 +15,7 @@ use App\Http\Livewire\Users\Actions\RemoveWorkerRoleAction;
 
 class UsersTableView extends TableView
 {
+    use Actions;
     /**
      * Sets a model class to get the initial data
      */

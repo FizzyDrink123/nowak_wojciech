@@ -21,7 +21,11 @@ class RemoveWorkerRoleAction extends Action
     public function handle($model, View $view)
     {
         $model->removeRole(config('auth.roles.worker'));
-        $this->success(__('users.messages.successes.worker_role_removed'));
+        $view->notification()->success(
+            $title = __('tranlation.messages.successes.updated_title'),
+            $description = __('users.messages.successes.admin_role_removed',['user'=> $model->name
+            ])
+        );
     }
     public function renderIf($model, View $view)
     {

@@ -7,6 +7,8 @@ use App\Models\Category;
 use LaravelViews\Facades\Header;
 use LaravelViews\Views\TableView;
 use Illuminate\Contracts\Database\Eloquent\Builder;
+use App\Http\Livewire\Categories\Filters\SoftDeleteFilter;
+use App\Http\Livewire\Categories\Actions\EditCategoryAction;
 
 class CategoriesTableView extends TableView
 {
@@ -55,6 +57,20 @@ class CategoriesTableView extends TableView
             $model->created_at,
             $model->updated_at,
             $model->deleted_at,
+        ];
+    }
+
+    protected function filters ()
+    {
+        return[
+            new SoftDeleteFilter,
+        ];
+    }
+
+    protected function actionsByRow()
+    {
+        return[
+            new EditCategoryAction('categories.edit', __('translation.actions.edit')),
         ];
     }
 }
