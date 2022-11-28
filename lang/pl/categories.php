@@ -15,6 +15,18 @@ return[
         'successes'=>[
             'stored'=>'Dodano kategorię :name',
             'udpated'=>'Zaktualizowano kategorię :name',
+            'destroy'=>'Usunięto kategorię :name',
+            'restore'=>'Przywrócono kategorię :name',
         ],
     ],
+    'dialogs'=>[
+        'soft_delete'=>[
+            'title'=>'Usuwanie kategorii',
+            'description'=>'Czy na pewno usunąć kategorię :name',
+        ],
+        'restore'=>[
+            'title'=>'Przywracanie kategorii',
+            'description'=>'Czy na pewno przywrócic kategorię :name',
+        ],
+    ]
 ];

@@ -14,6 +14,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
+        $this->authorize('viewAny',Category::class);
         return view(
             'categories.index'
         );
@@ -61,6 +62,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
+        $this->authorize('update',$category);
         return view(
             'categories.form',
             [

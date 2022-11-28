@@ -10,7 +10,7 @@
         <hr class="my-2">
         <div class="grid grid-cols-2 gap-2">
             <div class="">
-                <label for="name"{{ __('categories.attributes.name')></lable>
+                <label for="name">{{ __('categories.attributes.name') }}</lable>
             </div>
             <div class="">
                 <x-input placeholder="{{ __('translation.enter') }}" wire:model="category.name"/>

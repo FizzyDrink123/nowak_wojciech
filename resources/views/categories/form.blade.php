@@ -8,7 +8,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white shadow-xl sm:rounded-lg">
                 @if (isset($category))
-                    <livewire:categories.category-form :category ="$category" :editMode="true"/>
+                    <livewire:categories.category-form :category="$category" :editMode="true"/>
                 @else
                     <livewire:categories.category-form :editMode="false"/>
                 @endif

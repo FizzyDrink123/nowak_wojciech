@@ -4,14 +4,18 @@ namespace App\Http\Livewire\Categories;
 
 use App\Models\User;
 use App\Models\Category;
+use WireUi\Traits\Actions;
 use LaravelViews\Facades\Header;
 use LaravelViews\Views\TableView;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use App\Http\Livewire\Categories\Filters\SoftDeleteFilter;
 use App\Http\Livewire\Categories\Actions\EditCategoryAction;
+use App\Http\Livewire\Categories\Actions\RestoreCategoryAction;
+use App\Http\Livewire\Categories\Actions\SoftDeleteCategoryAction;
 
 class CategoriesTableView extends TableView
 {
+    use Actions;
     /**
      * Sets a model class to get the initial data
      */
@@ -71,6 +75,32 @@ class CategoriesTableView extends TableView
     {
         return[
             new EditCategoryAction('categories.edit', __('translation.actions.edit')),
+            new SoftDeleteCategoryAction(),
+            new RestoreCategoryAction(),
         ];
+    }
+
+    public function softDelete(int $id)
+    {
+        $category = Category::find($id);
+        $category -> delete();
+        $this->notification()->success(
+            $title = __('translation.messages.succsesses.destroy_title'),
+            $description = __('categories.messages.successes.destroy',[
+                'name'=>$category->name,
+            ])
+            );
+    }
+
+    public function restore(int $id)
+    {
+        $category = Category::withTrashed()->find($id);
+        $category->restore();
+        $this->notification()->success(
+            $title=__('translation.messages.successes.restore_title'),
+            $description=__('categories.messages.successes.restore',[
+                'name'=>$category->name,
+            ])
+        );
     }
 }

@@ -10,10 +10,14 @@ return[
       'successes'=>[
         'stored_title'=>'Utworzony',
         'update_title'=>'Zaktualizowano',
+        'destroy_title'=>'Usunięto',
+        'restore_title'=>'Przywrócono',
       ]  
     ],
     'actions'=>[
         'edit'=>'Edytuj',
+        'destroy'=>'Usuń',
+        'restore'=>'Przywróć',
     ],
     'yes'=>'Tak',
     'no'=>'Nie',
