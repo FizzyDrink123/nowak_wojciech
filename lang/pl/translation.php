@@ -12,7 +12,19 @@ return[
         'update_title'=>'Zaktualizowano',
         'destroy_title'=>'Usunięto',
         'restore_title'=>'Przywrócono',
+        'destroy_description'=>'Usunięto :model',
+        'restore_description'=>'Przywrócono :model',
       ]  
+    ],
+    'dialogs'=>[
+        'soft_delete'=>[
+            'title'=>'Usuwanie',
+            'description'=>'Czy na pewno usunąć :model',
+        ],
+        'restore' =>[
+            'title'=> 'Przywracanie',
+            'descritpion'=>'Czy na pewno przywrócić :model',
+        ],
     ],
     'actions'=>[
         'edit'=>'Edytuj',

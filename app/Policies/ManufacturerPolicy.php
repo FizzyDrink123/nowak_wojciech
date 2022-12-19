@@ -67,7 +67,8 @@ class ManufacturerPolicy
      */
     public function delete(User $user, Manufacturer $manufacturer)
     {
-        //
+        return $manufacturer->deleted_at === null
+            && $user->can('manufacturers.manage');
     }
 
     /**
@@ -79,7 +80,8 @@ class ManufacturerPolicy
      */
     public function restore(User $user, Manufacturer $manufacturer)
     {
-        //
+        return $manufacturer->deleted_at !== null
+            && $user->can('manufacturers.manage');
     }
 
     /**

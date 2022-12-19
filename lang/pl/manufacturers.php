@@ -16,6 +16,8 @@ return[
         'successes'=>[
             'stored'=>'Dodano producenta :name',
             'updated'=>'Zaktualizowano producenta :name',
+            'destroy'=>'Usunięto producenta :name',
+            'restore'=>'Przywrócono producenta :name'
         ]
     ],
 ];

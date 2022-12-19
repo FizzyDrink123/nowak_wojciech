@@ -2,16 +2,23 @@
 
 namespace App\Http\Livewire\Manufacturers;
 
-
+use WireUi\Traits\Actions;
 use App\Models\Manufacturer;
 use LaravelViews\Facades\Header;
 use LaravelViews\Views\TableView;
+use App\Http\Livewire\Traits\Restore;
+use Illuminate\Database\Eloquent\Model;
+use App\Http\Livewire\Traits\SoftDelete;
 use Illuminate\Database\Eloquent\Builder;
+use App\Http\Livewire\Actions\SoftDeleteAction;
 use App\Http\Livewire\Manufacturers\Actions\EditManufacturerAction;
-
+use App\Http\Livewire\Manufacturers\Actions\RestoreManufacturerAction;
 
 class ManufacturersTableView extends TableView
 {
+    use Actions;
+    use SoftDelete;
+    use Restore;
     /**
      * Sets a model class to get the initial data
      */
@@ -69,6 +76,22 @@ class ManufacturersTableView extends TableView
     {
         return[
             new EditManufacturerAction('manufacturers.edit',__('translation.action.edit')),
+            new SoftDeleteAction(),
+            new RestoreManufacturerAction(),
         ];
+    }
+
+    protected function softDeleteNotification(Model $model)
+    {
+        return __('manufacturers.messages.successes.destroy',[
+            'name'=>$model
+        ]);
+    }
+
+    protected function restoreNotificationDescription(Model $model)
+    {
+        return __('manufacturers.messages.success.restore',[
+            'name'=>$model
+        ]);
     }
 }

@@ -14,4 +14,9 @@ class Manufacturer extends Model
     protected $filable = [
         'name',
     ];
+
+    public function __toString()
+    {
+        return $this -> name;
+    }
 }
