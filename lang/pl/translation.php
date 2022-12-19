@@ -64,5 +64,6 @@ return[
             'log-viewer'=>'Logi',
             'users'=>'Użytkownicy',
             'categories'=>'Kategorie',
+            'manufacturers'=>'Reżyserzy'
         ],
     ];

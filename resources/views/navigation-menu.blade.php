@@ -15,9 +15,14 @@
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
-                    @can('categories.index')
+                    @can('viewAny', App\Models\Category::class)
                     <x-jet-nav-link href="{{ route('categories.index') }}" :active="request()->routeIs('categories.index')">
                         {{ __('translation.navigation.categories') }}
+                    </x-jet-nav-link>
+                    @endcan
+                    @can('viewAny', App\Models\Manufacturer::class)
+                    <x-jet-nav-link href="{{ route('manufacturers.index') }}" :active="request()->routeIs('manufacturers.index')">
+                        {{ __('translation.navigation.manufacturers') }}
                     </x-jet-nav-link>
                     @endcan
                     @can('log-viewer')
@@ -155,9 +160,14 @@
             <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                 {{ __('translation.navigation.dashboard') }}
             </x-jet-responsive-nav-link>
-            @can('categories.index')
+            @can('viewAny', App\Models\Category::class)
             <x-jet-responsive-nav-link href="{{ route('categories.index') }}" :active="request()->routeIs('categories.index')">
                 {{ __('translation.navigation.categories') }}
+            </x-jet-responsive-nav-link>
+            @endcan
+            @can('viewAny', App\Models\Manufacturers::class)
+            <x-jet-responsive-nav-link href="{{ route('manufacturers.index') }}" :active="request()->routeIs('manufacturers.index')">
+                {{ __('translation.navigation.manufacturers') }}
             </x-jet-responsive-nav-link>
             @endcan
             @can('log-viewer')

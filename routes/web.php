@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ManufacturerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +39,10 @@ Route::middleware([
 
     Route::resource('categories',CategoryController::class)->only([
         'index', 'create', 'edit'
+    ]);
+
+    Route::resource('manufacturers', ManufacturerController::class)->only([
+        'index','create','edit'
     ]);
 });
 
