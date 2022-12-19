@@ -8,6 +8,7 @@ use App\Models\Manufacturer;
 use Illuminate\Database\Seeder;
 use Database\Seeders\RoleSeeder;
 use Database\Seeders\UserSeeder;
+use Database\Seeders\ProductSeeder;
 use Database\Seeders\CategorySeeder;
 use Illuminate\Support\Facades\Hash;
 use Database\Seeders\PermissionSeeder;
@@ -33,5 +34,6 @@ class DatabaseSeeder extends Seeder
         // ]);
         $this->call(CategorySeeder::class);
         $this->call(ManufacturerSeeder::class);
+        $this->call(ProductSeeder::class);
     }
 }

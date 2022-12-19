@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ManufacturerController;
 
@@ -28,7 +29,8 @@ Route::middleware([
     'verified'
 ])->group(function () {
     Route::get('/dashboard', function () {
-        return view('dashboard');
+        return redirect()->route('products.index');
+        // return view('dashboard');
     })->name('dashboard');
 
     Route::name('users.')->prefix('users')->group(function(){
@@ -43,6 +45,10 @@ Route::middleware([
 
     Route::resource('manufacturers', ManufacturerController::class)->only([
         'index','create','edit'
+    ]);
+
+    Route::resource('products', ProductController::class)->only([
+        'index'
     ]);
 });
 

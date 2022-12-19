@@ -12,13 +12,15 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-jet-nav-link>
+                    @can('viewAny', App\Models\Product::class)
+                        <x-jet-nav-link href="{{ route('products.index') }}" :active="request()->routeIs('products.index')">
+                            {{ __('translation.navigation.products') }}
+                        </x-jet-nav-link>
+                    @endcan
                     @can('viewAny', App\Models\Category::class)
-                    <x-jet-nav-link href="{{ route('categories.index') }}" :active="request()->routeIs('categories.index')">
-                        {{ __('translation.navigation.categories') }}
-                    </x-jet-nav-link>
+                        <x-jet-nav-link href="{{ route('categories.index') }}" :active="request()->routeIs('categories.index')">
+                            {{ __('translation.navigation.categories') }}
+                        </x-jet-nav-link>
                     @endcan
                     @can('viewAny', App\Models\Manufacturer::class)
                     <x-jet-nav-link href="{{ route('manufacturers.index') }}" :active="request()->routeIs('manufacturers.index')">
@@ -157,13 +159,15 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                {{ __('translation.navigation.dashboard') }}
-            </x-jet-responsive-nav-link>
+            @can('viewAny', App\Models\Product::class)
+                <x-jet-responsive-nav-link href="{{ route('products.index') }}" :active="request()->routeIs('products.index')">
+                    {{ __('translation.navigation.products') }}
+                </x-jet-responsive-nav-link>
+            @endcan
             @can('viewAny', App\Models\Category::class)
-            <x-jet-responsive-nav-link href="{{ route('categories.index') }}" :active="request()->routeIs('categories.index')">
-                {{ __('translation.navigation.categories') }}
-            </x-jet-responsive-nav-link>
+                <x-jet-responsive-nav-link href="{{ route('categories.index') }}" :active="request()->routeIs('categories.index')">
+                    {{ __('translation.navigation.categories') }}
+                </x-jet-responsive-nav-link>
             @endcan
             @can('viewAny', App\Models\Manufacturers::class)
             <x-jet-responsive-nav-link href="{{ route('manufacturers.index') }}" :active="request()->routeIs('manufacturers.index')">
