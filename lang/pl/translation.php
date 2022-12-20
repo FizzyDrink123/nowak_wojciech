@@ -39,6 +39,7 @@ return[
     'save'=>'Zapisz',
     'back'=>'Wstecz',
     'enter'=>'Wprowadż wartość',
+    'select'=>'Wybierz wartość',
     'account'=>[
         'manage_account'=>'Zarządzanie profilem',
         'profile'=>'Profil',

@@ -43,12 +43,18 @@ Route::middleware([
         'index', 'create', 'edit'
     ]);
 
+    Route::get('async/categories',[CategoryController::class,'async'])
+    ->name('async.categories');
+
     Route::resource('manufacturers', ManufacturerController::class)->only([
         'index','create','edit'
     ]);
 
+    Route::get('async/manufacturers',[ManufacturersController::class,'async'])
+    ->name('async.manufacturers');
+
     Route::resource('products', ProductController::class)->only([
-        'index'
+        'index','create','edit'
     ]);
 });
 
