@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Product>
  */
-class ProductFactory extends Factory
+class MovieFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -20,6 +20,7 @@ class ProductFactory extends Factory
         return [
             'name'=>$this->faker->word(),
             'description' => $this->faker->optional->text(150),
+            'information' => $this->faker->optional->text(50),
             'manufacturer_id' => Manufacturer::select('id')
             ->orderByRaw('RAND()')
             ->first()->id,

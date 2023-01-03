@@ -38,7 +38,7 @@ class CategoryController extends Controller
                         fn (array $item) => $item['id'],
                         array_filter(
                             $request->input('selected',[]),
-                            fn ($item)=> (is_array($item) && isset($item['id']))
+                            fn ($item) => (is_array($item) && isset($item['id']))
                         )
                     )
                         ),

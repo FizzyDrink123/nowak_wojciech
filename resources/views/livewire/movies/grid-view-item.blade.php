@@ -3,6 +3,7 @@
     'title' => '',
     'manufacturer' => '',
     'description' => '',
+    'information' => '',
     'withBackground' => false,
     'model',
     'actions' => [],
@@ -22,18 +23,18 @@
   <div class="pt-4 {{ $withBackground ? 'bg-white rounded-b-md p-4' : '' }}">
     <div class="flex items-start">
       <div class="flex-1">
-        <h3 class="font-bold leading-6 text-gray-900">
+        <h3 class="font-bold leading-6 text-gray-900 {{ $model->deleted_at ? 'line-through' : ''}}">
           @if ($hasDefaultAction)
             <a href="#!" class="hover:underline" wire:click.prevent="onCardClick({{ $model->getKey() }})">
-              {!! $title !!}
+              {!! $name !!}
             </a>
           @else
-            {!! $title !!}
+            {!! $name !!}
           @endif
         </h3>
         @if($manufacturer)
             <span class="text-sm text-gray-600">
-                {{ __('products.attributes.manufacturer') }}: {!! $manufacturer !!}
+                {{ __('movies.attributes.manufacturer') }}: {!! $manufacturer !!}
             </span> 
         @endif  
         @if ($categories)
@@ -56,6 +57,12 @@
     @if (isset($description))
       <p class="line-clamp-3 mt-2">
         {!! $description !!}
+      </p>
+    @endif
+
+    @if (isset($information))
+      <p class="line-clamp-3 mt-2">
+        {!! $information !!}
       </p>
     @endif
   </div>

@@ -7,6 +7,8 @@
     "require": {
         "php": "^8.0.2",
         "arcanedev/log-viewer": "^9.0",
+        "blade-ui-kit/blade-icons": "^1.4",
+        "codeat3/blade-carbon-icons": "^2.9",
         "guzzlehttp/guzzle": "^7.2",
         "laravel-views/laravel-views": "^2.4",
         "laravel/framework": "^9.19",

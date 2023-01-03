@@ -78,6 +78,7 @@ return[
             'users'=>'Użytkownicy',
             'categories'=>'Kategorie',
             'manufacturers'=>'Reżyserzy',
-            'products'=>'Filmy'
+            'movies'=>'Filmy',
+            'schedules'=>'Repertuar',
         ],
     ];

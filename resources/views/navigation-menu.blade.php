@@ -12,9 +12,9 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    @can('viewAny', App\Models\Product::class)
-                        <x-jet-nav-link href="{{ route('products.index') }}" :active="request()->routeIs('products.index')">
-                            {{ __('translation.navigation.products') }}
+                    @can('viewAny', App\Models\Movie::class)
+                        <x-jet-nav-link href="{{ route('movies.index') }}" :active="request()->routeIs('movies.index')">
+                            {{ __('translation.navigation.movies') }}
                         </x-jet-nav-link>
                     @endcan
                     @can('viewAny', App\Models\Category::class)
@@ -26,6 +26,11 @@
                     <x-jet-nav-link href="{{ route('manufacturers.index') }}" :active="request()->routeIs('manufacturers.index')">
                         {{ __('translation.navigation.manufacturers') }}
                     </x-jet-nav-link>
+                    @endcan
+                    @can('viewAny', App\Models\Schedule::class)
+                        <x-jet-nav-link href="{{ route('schedules.index') }}" :active="request()->routeIs('schedules.index')">
+                            {{ __('translation.navigation.schedules') }}
+                        </x-jet-nav-link>
                     @endcan
                     @can('log-viewer')
                     <x-jet-nav-link href="{{ route('log-viewer::dashboard') }}" :active="request()->routeIs('log-viewer::dashboard')">
@@ -159,9 +164,9 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            @can('viewAny', App\Models\Product::class)
-                <x-jet-responsive-nav-link href="{{ route('products.index') }}" :active="request()->routeIs('products.index')">
-                    {{ __('translation.navigation.products') }}
+            @can('viewAny', App\Models\Movie::class)
+                <x-jet-responsive-nav-link href="{{ route('movies.index') }}" :active="request()->routeIs('movies.index')">
+                    {{ __('translation.navigation.movies') }}
                 </x-jet-responsive-nav-link>
             @endcan
             @can('viewAny', App\Models\Category::class)
@@ -173,6 +178,11 @@
             <x-jet-responsive-nav-link href="{{ route('manufacturers.index') }}" :active="request()->routeIs('manufacturers.index')">
                 {{ __('translation.navigation.manufacturers') }}
             </x-jet-responsive-nav-link>
+            @endcan
+            @can('viewAny', App\Models\Schedule::class)
+                <x-jet-responsive-nav-link href="{{ route('schedules.index') }}" :active="request()->routeIs('schedules.index')">
+                    {{ __('translation.navigation.schedules') }}
+                </x-jet-responsive-nav-link>
             @endcan
             @can('log-viewer')
             <x-jet-responsive-nav-link href="{{ route('log-viewer::dashboard') }}" :active="request()->routeIs('log-viewer')">

@@ -31,13 +31,12 @@ class ManufacturerController extends Controller
                     => $query->where('name','like',"%{$request->search}%")
             )
             ->when(
-                $request->exist('selected',
+                $request->exists('selected'),
                 fn (Builder $query)=>$query->whereIn(
                     'id',$request->input('selected',[])
                 ),
                 fn (Builder $query) => $query->limit(10)
                 )
-            )
             ->get();
     }
     /**

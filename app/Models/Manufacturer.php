@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Product;
+use App\Models\Movies;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -21,8 +21,8 @@ class Manufacturer extends Model
         return $this -> name;
     }
 
-    public function products()
+    public function movies()
     {
-        return $this->hasMany(Product::class);
+        return $this->hasMany(Movies::class);
     }
 }

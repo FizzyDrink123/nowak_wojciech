@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
+use App\Models\Schedule;
 use Illuminate\Http\Request;
 
-class ProductController extends Controller
+class ScheduleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,10 +14,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-            $this->authorize('ViewAny',Product::class);
-            return view(
-                'products.index'
-            );
+       return view('schedules.index');
     }
 
     /**
@@ -27,10 +24,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $this->authorize('create',Product::class);
-        return view(
-            'products.form'
-        );
+        //
     }
 
     /**

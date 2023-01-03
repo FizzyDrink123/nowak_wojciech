@@ -13,15 +13,20 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('products', function (Blueprint $table) {
+        Schema::create('schedules', function (Blueprint $table) {
             $table->id();
-            $table->string('name',100);
-            $table->string('description',1000)->nullable();
-            $table->unsignedBigInteger('manufacturer_id');
-            $table->foreign('manufacturer_id')
+            $table->unsignedBigInteger('movie_id');
+            $table->foreign('movie_id',100)
                 ->references('id')
-                ->on('manufacturers')
+                ->on('movies')
                 ->onDelete('no action');
+            //$table->string('information_id',255)->nullable();
+            $table->unsignedBigInteger('information_id');
+            $table->foreign('information_id',200)
+                ->references('id')
+                ->on('movies')
+                ->onDelete('no action');
+            $table->dateTime('date');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -34,6 +39,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('schedules');
     }
 };

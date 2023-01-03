@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\Product;
+use App\Models\Movie;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class ProductPolicy
+class MoviePolicy
 {
     use HandlesAuthorization;
 
@@ -18,9 +18,13 @@ class ProductPolicy
      */
     public function viewAny(User $user)
     {
-        return $user->can('products.index');
+        return $user->can('movies.index');
     }
 
+    public function manage(User $user)
+    {
+        return $user->can('movies.manage');
+    }
     /**
      * Determine whether the user can view the model.
      *
@@ -28,7 +32,7 @@ class ProductPolicy
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Product $product)
+    public function view(User $user, Movie $movie)
     {
         //
     }
@@ -41,7 +45,7 @@ class ProductPolicy
      */
     public function create(User $user)
     {
-        return $user->can('products.manage');
+        return $user->can('movies.manage');
     }
 
     /**
@@ -51,9 +55,10 @@ class ProductPolicy
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Product $product)
+    public function update(User $user, Movie $movie)
     {
-        //
+        return $movie->deleted_at === null
+            && $user->can('movies.manage');
     }
 
     /**
@@ -63,9 +68,10 @@ class ProductPolicy
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Product $product)
+    public function delete(User $user, Movie $movie)
     {
-        //
+        return $movie->deleted_at === null
+            && $user->can('movies.manage');
     }
 
     /**
@@ -75,20 +81,11 @@ class ProductPolicy
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Product $product)
+    public function restore(User $user, Movie $movie)
     {
-        //
+        return $movie->deleted_at !== null
+            && $user->can('movies.manage');
     }
 
-    /**
-     * Determine whether the user can permanently delete the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function forceDelete(User $user, Product $product)
-    {
-        //
-    }
+
 }

@@ -32,8 +32,11 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'manufacturers.index']);
         Permission::create(['name' => 'manufacturers.manage']);
 
-        Permission::create(['name' => 'products.index']);
-        Permission::create(['name' => 'products.manage']);
+        Permission::create(['name' => 'movies.index']);
+        Permission::create(['name' => 'movies.manage']);
+
+        Permission::create(['name' => 'schedules.index']);
+        Permission::create(['name' => 'schedules.manage']);
 
         $adminRole = Role::findByName(config('auth.roles.admin'));
         $adminRole->givePermissionTo('users.index');
@@ -42,8 +45,10 @@ class PermissionSeeder extends Seeder
         $adminRole->givePermissionTo('users.change_role');
         $adminRole->givePermissionTo('manufacturers.index');
         $adminRole->givePermissionTo('manufacturers.manage');
-        $adminRole->givePermissionTo('products.index');
-        $adminRole->givePermissionTo('products.manage');
+        $adminRole->givePermissionTo('movies.index');
+        $adminRole->givePermissionTo('movies.manage');
+        $adminRole->givePermissionTo('schedules.index');
+        $adminRole->givePermissionTo('schedules.manage');
 
         $adminRole->givePermissionTo('log-viewer');
 
@@ -53,11 +58,15 @@ class PermissionSeeder extends Seeder
         $workerRole=Role::findByName(config('auth.roles.worker'));
         $workerRole->givePermissionTo('categories.index');
         $workerRole->givePermissionTo('manufacturers.index');
-        $workerRole->givePermissionTo('products.index');
+        $workerRole->givePermissionTo('movies.index');
+        $workerRole->givePermissionTo('schedules.index');
+        $workerRole->givePermissionTo('schedules.manage');
+        
 
         $userRole=Role::findByName(config('auth.roles.user'));
         $userRole->givePermissionTo('categories.index');
         $userRole->givePermissionTo('manufacturers.index');
-        $userRole->givePermissionTo('products.index');
+        $userRole->givePermissionTo('movies.index');
+        $userRole->givePermissionTo('schedules.index');
     }
 }

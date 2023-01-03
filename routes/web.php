@@ -3,8 +3,9 @@
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\ProductController;
+use App\Http\Controllers\MovieController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\ManufacturerController;
 
 /*
@@ -12,7 +13,7 @@ use App\Http\Controllers\ManufacturerController;
 | Web Routes
 |--------------------------------------------------------------------------
 |
-| Here is where you can register web routes for your application. These
+| Here is where you can register web p for your application. These
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
@@ -29,7 +30,7 @@ Route::middleware([
     'verified'
 ])->group(function () {
     Route::get('/dashboard', function () {
-        return redirect()->route('products.index');
+        return redirect()->route('movies.index');
         // return view('dashboard');
     })->name('dashboard');
 
@@ -50,11 +51,15 @@ Route::middleware([
         'index','create','edit'
     ]);
 
-    Route::get('async/manufacturers',[ManufacturersController::class,'async'])
+    Route::get('async/manufacturers',[ManufacturerController::class,'async'])
     ->name('async.manufacturers');
 
-    Route::resource('products', ProductController::class)->only([
+    Route::resource('movies', MovieController::class)->only([
         'index','create','edit'
+    ]);
+
+    Route::resource('schedules', ScheduleController::class)->only([
+        'index'
     ]);
 });
 
