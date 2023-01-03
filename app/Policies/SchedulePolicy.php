@@ -42,7 +42,7 @@ class SchedulePolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->can('schedules.manage');
     }
 
     /**

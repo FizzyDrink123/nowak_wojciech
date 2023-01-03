@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Movie;
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Builder;
 
 class MovieController extends Controller
 {
@@ -20,6 +21,31 @@ class MovieController extends Controller
             );
     }
 
+    public function async(Request $request)
+    {
+        $this->authorize('viewAny',Movie::class);
+        return Movie::query()
+            ->select('id','name','information')
+            ->orderBy('name')
+            ->when(
+                $request->search,
+                fn (Builder $query) => $query->where('name','like',"%{$request->serach}%"),
+                fn (Builder $query) => $query->where('information','like',"%{$request->serach}%")
+            )->when(
+                $request->exists('selected'),
+                fn(Builder $query)=>$query->WhereIn(
+                    'id',
+                    array_map(
+                        fn(array $item)=>$item['id'],
+                        array_filter(
+                            $request->input('selected',[]),
+                            fn($item)=>(is_array($item) && isset($item['id']))
+                        )
+                    )
+                        ),
+                        fn(Builder $query)=>$query->limit(10)
+            )->get();
+    }
     /**
      * Show the form for creating a new resource.
      *

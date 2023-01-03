@@ -9,14 +9,26 @@
       </h3>
 
       <hr class="my-2">
+        <div class="grid grid-cols-2 gap-2">
+            <div class="">
+                <label for="movie">{{ __('schedules.attributes.movie.name')}}</label>
+            </div>
+            <div clas="">
+                <x-select placeholder="{{ __('translation.select') }}" wire:model.defer="schedule.movie"
+                    :async-data="route('async.movies')" option-label="name" option-value="id"/>
+            </div>    
+        </div>
+
+      <hr class="my-2">
               <div class="grid grid-cols-2 gap-2">
                   <div class="">
-                      <label for="name">{{ __('schedules.attributes.name') }}</label>
+                      <label for="name">{{ __('schedules.attributes.date') }}</label>
                   </div>
                   <div class="">
-                      <x-input placeholder="{{ __('translation.enter') }}" wire:model="schedule.name"/>
+                      <x-input placeholder="{{ __('translation.enter') }}" wire:model="schedule.date"/>
                   </div>
               </div>
+
               <h2 class="my-2">
       <div class="flex justify-end pt-2">
           <x-button href="{{ route('schedules.index') }}" secondary class="mr-2"

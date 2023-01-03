@@ -58,8 +58,13 @@ Route::middleware([
         'index','create','edit'
     ]);
 
+    Route::get('async/movies',[MovieController::class,'async'])
+    ->name('async.movies');
+
+    
+
     Route::resource('schedules', ScheduleController::class)->only([
-        'index'
+        'index','create','edit'
     ]);
 });
 
