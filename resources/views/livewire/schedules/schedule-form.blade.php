@@ -11,12 +11,22 @@
       <hr class="my-2">
         <div class="grid grid-cols-2 gap-2">
             <div class="">
-                <label for="movie">{{ __('schedules.attributes.movie.name')}}</label>
+                <label for="movie_id">{{ __('schedules.attributes.movie.name')}}</label>
             </div>
             <div clas="">
-                <x-select placeholder="{{ __('translation.select') }}" wire:model.defer="schedule.movie"
+                <x-select placeholder="{{ __('translation.select') }}" wire:model.defer="schedule.movie_id"
                     :async-data="route('async.movies')" option-label="name" option-value="id"/>
             </div>    
+        </div>
+
+        <hr class="my-2">
+        <div class="grid grid-cols-2 gap-2">
+            <div class="">
+                <label for="information_id">{{ __('schedules.attributes.movie.information') }}</label>
+            </div>
+            <div class="">
+                <x-input placeholder="{{ __('translation.enter') }}" wire:model="schedule.information_id"/>
+            </div>
         </div>
 
       <hr class="my-2">

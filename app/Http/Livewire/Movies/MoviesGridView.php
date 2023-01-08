@@ -52,7 +52,7 @@ class MoviesGridView extends GridView
     public function card($model)
     {
         return[
-            'image' => Storage::url('no-image.png'),
+            'image' => $model->imageUrl(),
             'name' => $model->name,
             'description' => $model->description,
             'information' => $model->information,

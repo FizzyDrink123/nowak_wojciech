@@ -15,8 +15,8 @@ class SchedulesTableView extends TableView
     protected $model = Schedule::class;
 
     public $searchBy = [
-        'movie.name',
-        'movie.information',
+        'movie_id',
+        'movie_information',
         'date',
         'created_at',
         'updated_at',
@@ -35,7 +35,7 @@ class SchedulesTableView extends TableView
     public function headers(): array
     {
         return [
-            Header::title(__('schedules.attributes.movie.name'))->sortBy('movie.name'),
+            Header::title(__('schedules.attributes.movie.name'))->sortBy('movie_id'),
             Header::title(__('schedules.attributes.movie.information')),
             Header::title(__('schedules.attributes.date'))->sortBy('date'),
             Header::title(__('schedules.attributes.created_at'))->sortBy('created_at'),

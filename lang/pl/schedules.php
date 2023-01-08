@@ -1,6 +1,9 @@
 <?php
 
 return[
+    'actions'=>[
+        'create'=>'Utworzono',
+    ],
     'attributes'=>[
         'movie'=>[
             'name'=>'Nazwa filmu',
@@ -8,7 +11,7 @@ return[
         ],
         'date'=>'Data seansu',
         'created_at'=>'Utworzono',
-        'updated_at'=>'Zakutalizowano',
+        'updated_at'=>'Zaktualizowano',
         'deleted_at'=>'Usunięto',
     ],
 ];

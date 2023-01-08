@@ -8,13 +8,20 @@ use WireUi\Traits\Actions;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Livewire\WithFileUploads;
 
 class MovieForm extends Component
 {
     use Actions;
     use AuthorizesRequests;
+    use WithFileUploads;
 
     public Movie $movie;
+    public $categoriesIds;
+    public $image;
+
+    public $imageUrl;
+    public $imageExists;
     public Bool $editMode;
 
     public function rules()
@@ -42,10 +49,15 @@ class MovieForm extends Component
                 'integer',
                 'exists:manufacturers,id'
             ],
-            'movie.categories'=>[
+            'movie.categoriesIds'=>[
                 'required',
                 'array',
-            ]
+            ],
+            'image'=>[
+              'nullable',
+              'image',
+              'max:1024',
+            ],
         ];
     }
 
@@ -56,14 +68,18 @@ class MovieForm extends Component
             'description'=>Str::lower(__('movies.attributes.description')),
             'information'=>Str::lower(__('movies.attributes.information')),
             'manufacturer_id'=>Str::lower(__('movies.attributes.manufacturer')),
-            'categories'=>Str::lower(__('movies.attributes.categories')),
+            'categoriesIds'=>Str::lower(__('movies.attributes.categories')),
+            'image'=>Str::lower(
+                __('products.attributes.image')
+            )
         ];
     }
 
     public function mount(Movie $movie, Bool $editMode)
     {
         $this->movie = $movie;
-        $this->movie->load('categories');
+        $this->categoriesIds = $this->movie->categories->toArray();
+        $this->imageChange();
         $this->editMode = $editMode;
     }
 
@@ -87,14 +103,27 @@ class MovieForm extends Component
         sleep(1);
         $this->validate();
 
-        $categoriesIds = $this->movie->categories;
-        unset($this->movie->categories);
+        $image=$this->image;
+        $categoriesIds = $this->categoriesIds;
 
         $movie = $this->movie;
-        DB::transaction(function() use ($movie, $categoriesIds){
+        DB::transaction(function() use ($movie, $categoriesIds,$image){
             $movie->save();
+            if ($image !== null) {
+                $movie->image = $movie->id
+                    . '.' . $this->image->getClientOriginalExtension();
+                $movie->save();
+            }
             $movie->categories()->sync($categoriesIds);
         });
+
+        if($this->image !== null) {
+            $this->image->storeAs(
+                '',
+                $this->movie->image,
+                'public'
+            );
+        }
 
         $this->notification()->success(
             $title = $this->editMode
@@ -106,6 +135,17 @@ class MovieForm extends Component
         );
 
         $this->editMode = true;
-        $this->movie->load('categories');
+        $this->imageChange();
+    }
+
+    public function deleteImageConfirm()
+    {
+        dd('deleteImage');
+    }
+
+    protected function imageChange()
+    {
+        $this->imageExists = $this->movie->imageExists();
+        $this->imageUrl = $this->movie->imageUrl();
     }
 }

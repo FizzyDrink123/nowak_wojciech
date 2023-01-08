@@ -45,7 +45,7 @@
             <div class="">
                 <label for="manufacturer_id">{{ __('movies.attributes.manufacturer')}}</label>
             </div>
-            <div clas="">
+            <div class="">
                 <x-select placeholder="{{ __('translation.select') }}" wire:model.defer="movie.manufacturer_id"
                     :async-data="route('async.manufacturers')" option-label="name" option-value="id"/>
             </div>    
@@ -56,9 +56,28 @@
             <div class="">
                 <label for="categories">{{ __('movies.attributes.categories') }}</label>
             </div>
-            <div clas="">
-                <x-select multiselect placeholder="{{ __('translation.select') }}" wire:model.defer="movie.categories"
+            <div class="">
+                <x-select multiselect placeholder="{{ __('translation.select') }}" wire:model="categoriesIds"
                     :async-data="route('async.categories')" option-label="name" option-value="id"/>
+            </div>    
+        </div>
+
+        <hr class="my-2">
+        <div class="grid grid-cols-2 gap-2">
+            <div class="">
+                <label for="image">{{ __('movies.attributes.image') }}</label>
+            </div>
+            <div class="">
+                @if($imageExists)
+                    <div class="realtive">
+                        <img class="w-full" src="{{ $imageUrl }}" alt="{{$movie->name}}">
+                        <div class="aboslute top-2 right-2 h-16">
+                            <x-button.circle outline xs secondary icon="trash" wire:click="deleteImageConfirm"/>
+                        </div>
+                    </div>
+                    @else
+                        <x-input type="file" wire:model="image"/>
+                    @endif
             </div>    
         </div>
 

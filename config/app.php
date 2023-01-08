@@ -219,5 +219,5 @@ return [
     ])->toArray(),
 
 
-    
+    'no_image'=>env('NO-IMAGE','no-image.png'),
 ];

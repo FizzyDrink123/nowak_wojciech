@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\Schedule;
 use WireUi\Traits\Actions;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class ScheduleForm extends Component
@@ -19,13 +20,20 @@ class ScheduleForm extends Component
     public function rules()
     {
         return [
-            'schedule.movie.name' => [
+            'schedule.movie_id' => [
                 'required',
-                'intiger',
+                'integer',
                 'exists:movies,id'
             ],
+            'schedule.information_id' => [
+                'nullable',
+                'string',
+                'max:1000',
+            ],
             'schedule.date'=>[
-                'required',
+                'nullable',
+                'string',
+                'max:1000',
             ]
         ];
     }
@@ -33,18 +41,18 @@ class ScheduleForm extends Component
     public function validationAttributes()
     {
         return[
-            'movie.name'=>Str::lower(__('schedules.attributes.movie.name')),
-            'movie.information'=>Str::lower(__('schedules.attributes.movie.information')),
+            'movie_id'=>Str::lower(__('schedules.attributes.movie.name')),
+            'information_id'=>Str::lower(__('schedules.attributes.movie.information')),
             'date'=>Str::lower(__('schedules.attributes.date')),
         ];
     }
 
-    // public function mount(Schedule $schedule, Bool $editMode)
-    // {
-    //     $this->schedule = $schedule;
-    //     //$this->schedule->load('movies');
-    //     $this->editMode = $editMode;
-    // }
+    public function mount(Schedule $schedule, Bool $editMode)
+    {
+        $this->schedule = $schedule;
+        $this->schedule->load('movie');
+        $this->editMode = $editMode;
+    }
 
     public function render()
     {
@@ -58,6 +66,28 @@ class ScheduleForm extends Component
 
     public function save()
     {
-        dd('save');
+        if($this->editMode){
+            $this->authorize('update', $this->schedule);
+        } else {
+            $this->authorize('create', Schedule::class);
+        }
+        sleep(1);
+        $this->validate();
+
+        $schedule = $this->schedule;
+        DB::transaction(function() use ($schedule){
+            $schedule->save();
+        });
+
+        $this->notification()->success(
+            $title = $this->editMode
+                ? __('translation.messages.successes.updated_title')
+                : __('translation.messages.successes.stored_title'),
+            $description = $this->editMode
+                ? __('schedules.messages.successes.updated',['movie_id' => $this->schedule->movie_id])
+                : __('schedules.messages.successes.updated',['movie_id' => $this->schedule->movie_id])
+        );
+
+        $this->editMode = true;
     }
 }
