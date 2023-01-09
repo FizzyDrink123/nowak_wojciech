@@ -31,9 +31,14 @@ class ScheduleForm extends Component
                 'max:1000',
             ],
             'schedule.date'=>[
-                'nullable',
+                'required',
                 'string',
                 'max:1000',
+            ],
+            'schedule.price'=>[
+                'required',
+                'int',
+                'max:100',
             ]
         ];
     }
@@ -44,6 +49,7 @@ class ScheduleForm extends Component
             'movie_id'=>Str::lower(__('schedules.attributes.movie.name')),
             'information_id'=>Str::lower(__('schedules.attributes.movie.information')),
             'date'=>Str::lower(__('schedules.attributes.date')),
+            'price'=>Str::lower(__('schedules.attributes.price')),
         ];
     }
 

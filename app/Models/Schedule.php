@@ -17,6 +17,7 @@ class Schedule extends Model
         'movie_id',
         'information_id',
         'date',
+        'price',
     ];
 
     public function movie()

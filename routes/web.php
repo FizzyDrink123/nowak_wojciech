@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\ManufacturerController;
 
@@ -61,10 +62,9 @@ Route::middleware([
     Route::get('async/movies',[MovieController::class,'async'])
     ->name('async.movies');
 
-    
-
     Route::resource('schedules', ScheduleController::class)->only([
         'index','create','edit'
     ]);
+
 });
 

@@ -32,10 +32,19 @@
       <hr class="my-2">
               <div class="grid grid-cols-2 gap-2">
                   <div class="">
-                      <label for="name">{{ __('schedules.attributes.date') }}</label>
+                      <label for="date">{{ __('schedules.attributes.date') }}</label>
                   </div>
                   <div class="">
                       <x-input placeholder="{{ __('translation.enter') }}" wire:model="schedule.date"/>
+                  </div>
+              </div>
+      <hr class="my-2">
+              <div class="grid grid-cols-2 gap-2">
+                  <div class="">
+                      <label for="price">{{ __('schedules.attributes.price') }}</label>
+                  </div>
+                  <div class="">
+                      <x-input placeholder="{{ __('translation.enter') }}" wire:model="schedule.price"/>
                   </div>
               </div>
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Facades\ManufacturerRepository;
 use App\Models\Manufacturer;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
@@ -22,22 +23,10 @@ class ManufacturerController extends Controller
     public function async(Request $request)
     {
         $this->authorize('viewAny',Manufacturer::class);
-        return Manufacturer::query()
-            ->select('id','name')
-            ->orderBy('name')
-            ->when(
-                $request->search,
-                fn (Builder $query)
-                    => $query->where('name','like',"%{$request->search}%")
-            )
-            ->when(
-                $request->exists('selected'),
-                fn (Builder $query)=>$query->whereIn(
-                    'id',$request->input('selected',[])
-                ),
-                fn (Builder $query) => $query->limit(10)
-                )
-            ->get();
+        return ManufacturerRepository::async(
+            $request->search,
+            $request->input('selected',[]),
+        );
     }
     /**
      * Store a newly created resource in storage.

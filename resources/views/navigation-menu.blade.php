@@ -96,6 +96,9 @@
                     </div>
                 @endif
 
+                <div class="">
+                    <livewire:cart.cart-counter/>
+                </div>
                 <!-- Settings Dropdown -->
                 <div class="ml-3 relative">
                     <x-jet-dropdown align="right" width="48">
@@ -196,6 +199,9 @@
             @endcan
         </div>
 
+        <div class="border-t border-gray-200 pt-2">
+            <livewire:cart.cart-counter/>
+        </div>
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
             <div class="flex items-center px-4">

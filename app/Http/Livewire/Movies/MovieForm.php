@@ -6,9 +6,10 @@ use App\Models\Movie;
 use Livewire\Component;
 use WireUi\Traits\Actions;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class MovieForm extends Component
 {
@@ -49,7 +50,7 @@ class MovieForm extends Component
                 'integer',
                 'exists:manufacturers,id'
             ],
-            'movie.categoriesIds'=>[
+            'categoriesIds'=>[
                 'required',
                 'array',
             ],
@@ -103,10 +104,10 @@ class MovieForm extends Component
         sleep(1);
         $this->validate();
 
-        $image=$this->image;
-        $categoriesIds = $this->categoriesIds;
-
         $movie = $this->movie;
+        $categoriesIds = $this->categoriesIds;
+        $image=$this->image;
+
         DB::transaction(function() use ($movie, $categoriesIds,$image){
             $movie->save();
             if ($image !== null) {
@@ -140,7 +141,43 @@ class MovieForm extends Component
 
     public function deleteImageConfirm()
     {
-        dd('deleteImage');
+        $this->dialog()->confirm([
+            'title'=>__('movies.dialogs.image_delete.title'),
+            'description'=>__('movies.dialogs.image_delete.description',[
+                'name'=>$this->movie->name
+            ]),
+            'icon'=>'question',
+            'iconColor'=>'text-red-500',
+            'accept'=>[
+                'label'=>__('translation.yes'),
+                'method'=>'deleteImage',
+            ],
+            'reject'=>[
+                'label'=>__('translation.no'),
+            ],
+        ]);
+    }
+
+    public function deleteImage()
+    {
+        if(Storage::disk('public')->delete($this->movie->image)){
+            $this->movie->image=null;
+            $this->movie->save();
+            $this->imageChange();
+            $this->notification()->success(
+                $title = __('translation.messages.successes.destroy_title'),
+                $description = __('movies.messages.successes.image_deleted',[
+                    'name'=>$this->movie->name
+                ])
+            );
+            return;
+        }
+        $this->notification()->success(
+            $title = __('translation.messages.errors.destroy_title'),
+            $description = __('movies.messages.errors.image_deleted',[
+                'name'=>$this->movie->name
+            ])
+        );
     }
 
     protected function imageChange()

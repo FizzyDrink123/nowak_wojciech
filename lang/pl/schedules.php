@@ -10,6 +10,7 @@ return[
             'information'=>'Informacje',
         ],
         'date'=>'Data seansu',
+        'price'=>'Cena',
         'created_at'=>'Utworzono',
         'updated_at'=>'Zaktualizowano',
         'deleted_at'=>'Usunięto',

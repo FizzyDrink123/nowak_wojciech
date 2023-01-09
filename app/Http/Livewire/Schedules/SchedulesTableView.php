@@ -6,6 +6,7 @@ use App\Models\Schedule;
 use LaravelViews\Facades\Header;
 use LaravelViews\Views\TableView;
 use Illuminate\Database\Eloquent\Builder;
+use App\Http\Livewire\Actions\AddToCartAction;
 
 class SchedulesTableView extends TableView
 {
@@ -18,6 +19,7 @@ class SchedulesTableView extends TableView
         'movie_id',
         'movie_information',
         'date',
+        'price',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -38,6 +40,8 @@ class SchedulesTableView extends TableView
             Header::title(__('schedules.attributes.movie.name'))->sortBy('movie_id'),
             Header::title(__('schedules.attributes.movie.information')),
             Header::title(__('schedules.attributes.date'))->sortBy('date'),
+            Header::title(__('schedules.attributes.price'))->sortBy('price'),
+            Header::title(__('schedules.attributes.buy')),
             Header::title(__('schedules.attributes.created_at'))->sortBy('created_at'),
             Header::title(__('schedules.attributes.updated_at'))->sortBy('updated_at'),
             Header::title(__('schedules.attributes.deleted_at'))->sortBy('deleted_at'),
@@ -55,6 +59,8 @@ class SchedulesTableView extends TableView
             $model->movie->name,
             $model->movie->information,
             $model->date,
+            $model->price,
+            $model->buy,
             $model->created_at,
             $model->updated_at,
             $model->deleted_at,

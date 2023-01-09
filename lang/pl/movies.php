@@ -22,7 +22,10 @@ return [
             'updated'=>'Zaktualizowano film :name',
             'destroy'=>'Usunięto film :name',
             'restore'=>'Przywrócono film :name',
-        ]
+        ],
+        'errors'=>[
+            'image_deleted'=>'Nie udało się usunąć zdjęcia dla filmu :name',
+        ],
     ],
     'dialogs'=>[
         'soft_delete'=>[
@@ -32,7 +35,11 @@ return [
         'restore' => [
             'title'=>'usuwanie filmu',
             'description'=>'Czy na pewno przywrócić film :name',
-        ]
+        ],
+        'image_delete'=>[
+            'title'=>'Usuwanie zdjęcia',
+            'description'=>'Czy na pewno usunąć zdjęcie dla filmu :name',
+        ],
     ],
     'filters'=>[
         'categories'=>'Nazwa kategorii',

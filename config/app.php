@@ -1,5 +1,6 @@
 <?php
 
+use App\Providers\ManufacturerRepositoryProvider;
 use Illuminate\Support\Facades\Facade;
 use Arcanedev\LogViewer\LogViewerServiceProvider;
 
@@ -200,7 +201,9 @@ return [
 
         Spatie\Permission\PermissionServiceProvider::class,
 
-        Arcanedev\LogViewer\LogViewerServiceProvider::class  
+        Arcanedev\LogViewer\LogViewerServiceProvider::class,
+        App\Providers\ManufacturerRepositoryProvider::class,
+        App\Providers\CartServiceProvider::class,
     ],
 
     /*
@@ -216,6 +219,8 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
+        'ManufacturerRepository'=> App\Facades\ManufacturerRepository::class,
+        'CartService'=>App\Facades\CartService::class,
     ])->toArray(),
 
 

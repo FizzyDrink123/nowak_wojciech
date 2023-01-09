@@ -28,6 +28,7 @@ class ScheduleFactory extends Factory
                     '+ 1 week',
                     '+ 2 weeks',
             ),
+            'price'=>$this->faker->randomFloat(2,10,100),
             'created_at' => $this->faker->dateTimeBetween(
                 '- 8 weeks',
                 '- 4 weeks',
