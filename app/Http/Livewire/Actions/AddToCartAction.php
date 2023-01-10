@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Actions;
 
 use App\Facades\CartService;
+use LaravelViews\Views\View;
 use LaravelViews\Actions\Action;
 
 class AddToCartAction extends Action
@@ -20,11 +21,11 @@ class AddToCartAction extends Action
     public function handle($model, View $view)
     {
         CartService::add($model->id);
-        $view->notification().success(
+        $view->notification()->success(
             $title = __('translation.messages.successes.cart_title'),
             $description = __(
                 'schedules.messages.successes.added_to_cart',
-                ['name'=>model->name]
+                ['name'=>$model->name]
             )
         );
         $view->emit('cartUpdated');

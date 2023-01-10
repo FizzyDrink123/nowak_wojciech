@@ -20,9 +20,9 @@ class SchedulesTableView extends TableView
         'movie_information',
         'date',
         'price',
-        'created_at',
-        'updated_at',
-        'deleted_at',
+        // 'created_at',
+        // 'updated_at',
+        // 'deleted_at',
     ];
 
     public function repository(): Builder
@@ -41,10 +41,10 @@ class SchedulesTableView extends TableView
             Header::title(__('schedules.attributes.movie.information')),
             Header::title(__('schedules.attributes.date'))->sortBy('date'),
             Header::title(__('schedules.attributes.price'))->sortBy('price'),
-            Header::title(__('schedules.attributes.buy')),
-            Header::title(__('schedules.attributes.created_at'))->sortBy('created_at'),
-            Header::title(__('schedules.attributes.updated_at'))->sortBy('updated_at'),
-            Header::title(__('schedules.attributes.deleted_at'))->sortBy('deleted_at'),
+            // Header::title(__('schedules.attributes.buy')),
+            // Header::title(__('schedules.attributes.created_at'))->sortBy('created_at'),
+            // Header::title(__('schedules.attributes.updated_at'))->sortBy('updated_at'),
+            // Header::title(__('schedules.attributes.deleted_at'))->sortBy('deleted_at'),
         ];
     }
 
@@ -61,9 +61,16 @@ class SchedulesTableView extends TableView
             $model->date,
             $model->price,
             $model->buy,
-            $model->created_at,
-            $model->updated_at,
-            $model->deleted_at,
+            // $model->created_at,
+            // $model->updated_at,
+            // $model->deleted_at,
+        ];
+    }
+
+    protected function actionsByRow()
+    {
+        return[
+            new AddToCartAction(),
         ];
     }
 
