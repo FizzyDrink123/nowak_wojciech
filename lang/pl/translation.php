@@ -80,5 +80,6 @@ return[
             'manufacturers'=>'Reżyserzy',
             'movies'=>'Filmy',
             'schedules'=>'Repertuar',
+            'invoices'=>'Faktury'
         ],
     ];

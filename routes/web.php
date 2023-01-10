@@ -66,5 +66,9 @@ Route::middleware([
         'index','create','edit'
     ]);
 
+    Route::resource('invoices', InvoiceController::class)->only([
+        'index'
+    ]);
+
 });
 

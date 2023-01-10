@@ -20,7 +20,7 @@ class AddToCartAction extends Action
     public function handle($model, View $view)
     {
         CartService::add($model->id);
-        $view->notification()_.success(
+        $view->notification().success(
             $title = __('translation.messages.successes.cart_title'),
             $description = __(
                 'schedules.messages.successes.added_to_cart',

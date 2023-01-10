@@ -38,6 +38,9 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'schedules.index']);
         Permission::create(['name' => 'schedules.manage']);
 
+        Permission::create(['name' => 'invoices.index']);
+        Permission::create(['name' => 'invoices.manage']);
+
         $adminRole = Role::findByName(config('auth.roles.admin'));
         $adminRole->givePermissionTo('users.index');
         $adminRole->givePermissionTo('users.store');
@@ -49,6 +52,8 @@ class PermissionSeeder extends Seeder
         $adminRole->givePermissionTo('movies.manage');
         $adminRole->givePermissionTo('schedules.index');
         $adminRole->givePermissionTo('schedules.manage');
+        $adminRole->givePermissionTo('invoices.index');
+        $adminRole->givePermissionTo('invoices.manage');
 
         $adminRole->givePermissionTo('log-viewer');
 

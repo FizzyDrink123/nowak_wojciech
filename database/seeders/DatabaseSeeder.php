@@ -9,6 +9,7 @@ use Illuminate\Database\Seeder;
 use Database\Seeders\RoleSeeder;
 use Database\Seeders\UserSeeder;
 use Database\Seeders\MovieSeeder;
+use Database\Seeders\InvoiceSeeder;
 use Database\Seeders\CategorySeeder;
 use Illuminate\Support\Facades\Hash;
 use Database\Seeders\PermissionSeeder;
@@ -36,5 +37,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ManufacturerSeeder::class);
         $this->call(MovieSeeder::class);
         $this->call(ScheduleSeeder::class);
+        $this->call(InvoiceSeeder::class);
     }
 }

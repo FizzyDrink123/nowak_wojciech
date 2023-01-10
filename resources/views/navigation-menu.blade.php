@@ -32,6 +32,11 @@
                             {{ __('translation.navigation.schedules') }}
                         </x-jet-nav-link>
                     @endcan
+                    @can('viewAny', App\Models\Invoice::class)
+                    <x-jet-nav-link href="{{ route('invoices.index') }}" :active="request()->routeIs('invoices.index')">
+                        {{ __('translation.navigation.invoices') }}
+                    </x-jet-nav-link>
+                    @endcan
                     @can('log-viewer')
                     <x-jet-nav-link href="{{ route('log-viewer::dashboard') }}" :active="request()->routeIs('log-viewer::dashboard')">
                         {{ __('translation.navigation.log-viewer') }}
@@ -185,6 +190,11 @@
             @can('viewAny', App\Models\Schedule::class)
                 <x-jet-responsive-nav-link href="{{ route('schedules.index') }}" :active="request()->routeIs('schedules.index')">
                     {{ __('translation.navigation.schedules') }}
+                </x-jet-responsive-nav-link>
+            @endcan
+            @can('viewAny', App\Models\Invoice::class)
+                <x-jet-responsive-nav-link href="{{ route('invoices.index') }}" :active="request()->routeIs('invoices.index')">
+                    {{ __('translation.navigation.invoices') }}
                 </x-jet-responsive-nav-link>
             @endcan
             @can('log-viewer')
